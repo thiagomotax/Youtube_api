@@ -6,16 +6,21 @@ import '../Api.dart';
 
 
 class Inicio extends StatefulWidget {
+
+  String pesquisa;
+
+  Inicio( this.pesquisa );
+
   @override
   _InicioState createState() => _InicioState();
 }
 
 class _InicioState extends State<Inicio> {
 
-  _listarVideos(){
+  _listarVideos(String pesquisa){
 
     Api api = Api();
-    return api.pesquisar("");
+    return api.pesquisar( pesquisa );
 
   }
 
@@ -23,9 +28,8 @@ class _InicioState extends State<Inicio> {
   Widget build(BuildContext context) {
 
 
-
     return FutureBuilder<List<Video>>(
-      future: _listarVideos(),
+      future: _listarVideos( widget.pesquisa ),
       builder: (contex, snapshot){
         switch( snapshot.connectionState ){
           case ConnectionState.none :

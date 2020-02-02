@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:youtube_api/CustomSearchDelegate.dart';
 import 'package:youtube_api/telas/Biblioteca.dart';
 import 'package:youtube_api/telas/EmAlta.dart';
 import 'package:youtube_api/telas/Inicio.dart';
@@ -18,11 +19,12 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _indiceAtual = 0;
+  String resultado = "";
 
   @override
   Widget build(BuildContext context) {
     List<Widget> telas = [
-      Inicio(),
+      Inicio(resultado),
       EmAlta(),
       Inscricoes(),
       Biblioteca()
@@ -47,8 +49,12 @@ class _HomeState extends State<Home> {
           ),
           IconButton(
             icon: Icon(Icons.search),
-            onPressed: () {
-              print("Pesquisa");
+            onPressed: () async {
+            String res = await showSearch(context: context, delegate: CustomSearchDelegate());
+            setState(() {
+              resultado = res;
+            });
+            print(res);
             },
           ),
           IconButton(
