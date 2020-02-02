@@ -6,7 +6,9 @@ import 'package:youtube_api/telas/Inicio.dart';
 import 'package:youtube_api/telas/Inscricoes.dart';
 
 void main() {
-  runApp(MaterialApp(home: Home()));
+  runApp(MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Home()));
 }
 
 class Home extends StatefulWidget {
@@ -19,7 +21,6 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-
     List<Widget> telas = [
       Inicio(),
       EmAlta(),
@@ -59,9 +60,8 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: Container(
-        child: Column(
-          children: <Widget>[telas[_indiceAtual]],
-        ),
+        padding: EdgeInsets.all(16),
+        child: telas[_indiceAtual],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _indiceAtual,

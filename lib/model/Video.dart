@@ -1,40 +1,31 @@
 class Video{
-  String _id;
-  String _titulo;
-  String _imagem;
-  String _canal;
-  String _descricao;
+  String id;
+  String titulo;
+  String imagem;
+  String canal;
+  String descricao;
 
-  Video(this._id, this._titulo, this._imagem, this._canal, this._descricao);
 
-  String get descricao => _descricao;
+  Video({this.id, this.titulo, this.descricao, this.imagem, this.canal});
 
-  set descricao(String value) {
-    _descricao = value;
-  }
+//  static converterJson(Map<String, dynamic> json){
+//    return Video(
+//      id: json["id"]["videoId"],
+//      titulo: json["snippet"]["title"],
+//      imagem: json["snippet"]["thumbnails"]["high"]["url"],
+//      canal: json["snippet"]["channelId"],
+//    );
+//  }
 
-  String get canal => _canal;
 
-  set canal(String value) {
-    _canal = value;
-  }
-
-  String get imagem => _imagem;
-
-  set imagem(String value) {
-    _imagem = value;
-  }
-
-  String get titulo => _titulo;
-
-  set titulo(String value) {
-    _titulo = value;
-  }
-
-  String get id => _id;
-
-  set id(String value) {
-    _id = value;
+  factory Video.fromJson(Map<String, dynamic> json){ //retorno é de um unico objeto com FACTORY
+    return Video(
+      id: json["id"]["videoId"],
+      titulo: json["snippet"]["title"],
+      imagem: json["snippet"]["thumbnails"]["high"]["url"],
+      canal: json["snippet"]["channelTitle"],
+      descricao: json["snippet"]["description"]
+    );
   }
 
 
